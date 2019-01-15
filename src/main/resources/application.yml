@@ -1,0 +1,24 @@
+server:
+  port: 8081
+mybatis:
+  mapper-locations: classpath*:mybatis/*/*.xml
+  type-aliases-package: com.cgq.pojo
+  executor-type: reuse
+  configuration:
+    map-underscore-to-camel-case: true
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html

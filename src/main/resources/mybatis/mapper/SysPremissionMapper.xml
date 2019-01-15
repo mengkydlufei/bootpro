@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cgq.mapper.SysPremissionMapper" >
+  <resultMap id="BaseResultMap" type="com.cgq.pojo.SysPremission" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="descripion" property="descripion" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="perms" property="perms" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, descripion, url, pid, perms, type, icon, order_num
+  </sql>
+
+  <select id="selectPermissionByRole" parameterType="string">
+    select p.*
+from t_sys_premission p,t_sys_permission_role pr
+where p.id=pr.permission_id
+and	pr.role_id=#{rid}
+  </select>
+</mapper>
