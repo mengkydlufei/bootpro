@@ -32,7 +32,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     private long maxWaitMillis;
 
     @Bean
-    public JedisPool redisPoolFactory() {
+    public JedisPool jedisPool() {
         Logger.getLogger(getClass()).info("JedisPool注入成功！！");
         Logger.getLogger(getClass()).info("redis地址：" + host + ":" + port);
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
@@ -40,7 +40,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
 
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
-
+        System.out.println(jedisPool==null);
         return jedisPool;
     }
 }

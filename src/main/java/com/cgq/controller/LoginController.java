@@ -1,5 +1,6 @@
 package com.cgq.controller;
 
+import com.cgq.annotation.PointDemo;
 import com.cgq.service.SysUserService;
 import com.cgq.utils.ParamDto;
 import org.apache.shiro.SecurityUtils;
@@ -64,6 +65,7 @@ public class LoginController {
      * 退出登陆
      * @return
      */
+    @PointDemo
     @ResponseBody
     @GetMapping("logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){

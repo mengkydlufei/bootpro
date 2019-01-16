@@ -4,7 +4,9 @@ import com.cgq.mapper.SysUserMapper;
 import com.cgq.pojo.SysUser;
 import com.cgq.service.SysUserService;
 import com.cgq.utils.ParamDto;
+import com.cgq.utils.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +18,20 @@ import java.util.List;
 public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisClient redisClient;
     @Override
     public List queryData(ParamDto paramDto) {
-        return sysUserMapper.queryData(paramDto);
+        List list = sysUserMapper.queryData(paramDto);
+        redisClient.setObjectList("查询用户",list,10000);
+//        ValueOperations<String,Object> operations = redisTemplate.opsForValue();
+//        operations.set("yyy",list);
+//        System.out.println(operations);
+        return list;
     }
 
     @Override

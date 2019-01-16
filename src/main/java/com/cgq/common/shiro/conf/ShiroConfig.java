@@ -26,20 +26,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 /**
  * Created by 1 on 2018/9/20.
  */
-//@Configuration
+@Configuration
 public class ShiroConfig {
-
-    @Value("${spring.redis.host}")
-    private String host;
-
-    @Value("${spring.redis.port}")
-    private int port;
-
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-
-    @Value("${spring.redis.password}")
-    private String password;
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
@@ -58,17 +46,6 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
 
     }
-/*    @Bean
-    public SecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
-        //设置realm.
-        securityManager.setRealm(myShiroRealm());
-        // 自定义缓存实现 使用redis
-        securityManager.setCacheManager(cacheManager());
-        // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager());
-        return securityManager;
-    }*/
 
     @Bean(name ="myShiroRealm" )
     public MyShiroRealm myShiroRealm(){
@@ -219,26 +196,6 @@ public class ShiroConfig {
         return sessionManager;
     }*/
 
-/*
-    //配置核心安全事务管理器
-    @Bean(name="securityManager")
-    public SecurityManager securityManager(@Qualifier("myShiroRealm") MyShiroRealm myShiroRealm) {
-        System.err.println("--------------shiro已经加载----------------");
-        DefaultWebSecurityManager manager=new DefaultWebSecurityManager();
-        manager.setRealm(myShiroRealm());
-        return manager;
-    }
-
-    @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
-        return new LifecycleBeanPostProcessor();
-    }
-    @Bean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
-        DefaultAdvisorAutoProxyCreator creator=new DefaultAdvisorAutoProxyCreator();
-        creator.setProxyTargetClass(true);
-        return creator;
-    }*/
 
 
 
