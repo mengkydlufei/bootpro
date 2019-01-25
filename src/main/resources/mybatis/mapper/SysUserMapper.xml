@@ -26,4 +26,8 @@
   <select id="selectByUsername" parameterType="string" resultMap="BaseResultMap">
     select * from t_sys_user WHERE username=#{username}
   </select>
+
+  <insert id="insertUser" parameterType="com.cgq.pojo.SysUser">
+    insert into t_sys_user(id, username, password) values (#{id},#{username},#{password})
+  </insert>
 </mapper>

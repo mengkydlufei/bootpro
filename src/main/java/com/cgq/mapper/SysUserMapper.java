@@ -13,4 +13,6 @@ public interface SysUserMapper {
     List queryUserByUsername(ParamDto paramDto);
 
     SysUser selectUserByNameAndPwd(ParamDto paramDto);
+
+    void insertUser(SysUser sysUser);
 }

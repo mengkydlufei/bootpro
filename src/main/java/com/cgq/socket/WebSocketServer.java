@@ -16,11 +16,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * Created by 1 on 2018/9/20.
  */
 @Component
-@ServerEndpoint("/websocket/{sid}")
+@ServerEndpoint("/endpointYyy/{sid}")
 public class WebSocketServer {
     Logger logger= LoggerFactory.getLogger(WebSocketServer.class);
 
-    private static int onLineCount=0;
+
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。

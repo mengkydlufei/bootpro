@@ -48,4 +48,9 @@ public class SysUserServiceImpl implements SysUserService {
     public SysUser selectUserByNameAndPwd(ParamDto paramDto) {
         return sysUserMapper.selectUserByNameAndPwd(paramDto);
     }
+
+    @Override
+    public void insertUser(SysUser sysUser) {
+        sysUserMapper.insertUser(sysUser);
+    }
 }

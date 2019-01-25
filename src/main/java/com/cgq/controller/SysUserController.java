@@ -1,7 +1,9 @@
 package com.cgq.controller;
 
 import com.cgq.annotation.PointDemo;
+import com.cgq.pojo.SysUser;
 import com.cgq.service.SysUserService;
+import com.cgq.utils.Encodes;
 import com.cgq.utils.ParamDto;
 import com.cgq.utils.RedisClient;
 import com.cgq.utils.ResultDto;
@@ -46,5 +48,16 @@ public class SysUserController {
         List list=sysUserService.queryUserByUsername(paramDto);
         logger.info("-----------username------------");
         return new ResultDto().success(list);
+    }
+
+
+    @PostMapping("insertUser")
+    public ResultDto addUser(@RequestBody SysUser sysUser){
+        String pwd = Encodes.entryptPassword(sysUser.getPassword());
+        sysUser.setPassword(pwd);
+
+        sysUserService.insertUser(sysUser);
+        return new ResultDto().success("ok");
+
     }
 }

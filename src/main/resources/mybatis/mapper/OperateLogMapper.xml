@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cgq.mapper.OperateLogMapper">
+	<resultMap id="BaseResultMap" type="com.cgq.pojo.OperateLogDto">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+		<result column="method_path" jdbcType="VARCHAR" property="methodPath" />
+		<result column="operate" jdbcType="VARCHAR" property="operate" />
+		<result column="req_params" jdbcType="VARCHAR" property="reqParams" />
+		<result column="method_params" jdbcType="VARCHAR" property="methodParams" />
+		<result column="op_date" jdbcType="TIMESTAMP" property="opDate" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+	</resultMap>
+
+	
+	<sql id="Base_Column_List">
+		id, user_id, ip, method_path, operate, req_params, method_params, op_date, description
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_operate_log
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<insert id="insert" parameterType="com.cgq.pojo.OperateLogDto">
+		insert into t_operate_log (id, user_id, ip,
+		method_path, operate, req_params,
+		method_params, op_date, description
+		)
+		values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR},
+		#{methodPath,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}, #{reqParams,jdbcType=VARCHAR},
+		#{methodParams,jdbcType=VARCHAR},
+		now(), #{description,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.cgq.pojo.OperateLogDto">
+		insert into t_operate_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="ip != null">
+				ip,
+			</if>
+			<if test="methodPath != null">
+				method_path,
+			</if>
+			<if test="operate != null">
+				operate,
+			</if>
+			<if test="reqParams != null">
+				req_params,
+			</if>
+			<if test="methodParams != null">
+				method_params,
+			</if>
+			<if test="opDate != null">
+				op_date,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="methodPath != null">
+				#{methodPath,jdbcType=VARCHAR},
+			</if>
+			<if test="operate != null">
+				#{operate,jdbcType=VARCHAR},
+			</if>
+			<if test="reqParams != null">
+				#{reqParams,jdbcType=VARCHAR},
+			</if>
+			<if test="methodParams != null">
+				#{methodParams,jdbcType=VARCHAR},
+			</if>
+			<if test="opDate != null">
+				now(),
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cgq.pojo.OperateLogDto">
+		update t_operate_log
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="methodPath != null">
+				method_path = #{methodPath,jdbcType=VARCHAR},
+			</if>
+			<if test="operate != null">
+				operate = #{operate,jdbcType=VARCHAR},
+			</if>
+			<if test="reqParams != null">
+				req_params = #{reqParams,jdbcType=VARCHAR},
+			</if>
+			<if test="methodParams != null">
+				method_params = #{methodParams,jdbcType=VARCHAR},
+			</if>
+			<if test="opDate != null">
+				op_date = #{opDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cgq.pojo.OperateLogDto">
+		update t_operate_log
+		set user_id = #{userId,jdbcType=BIGINT},
+		ip =
+		#{ip,jdbcType=VARCHAR},
+		method_path = #{methodPath,jdbcType=VARCHAR},
+		operate = #{operate,jdbcType=VARCHAR},
+		req_params =
+		#{reqParams,jdbcType=VARCHAR},
+		method_params = #{methodParams,jdbcType=VARCHAR},
+		op_date = #{opDate,jdbcType=TIMESTAMP},
+		description = #{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

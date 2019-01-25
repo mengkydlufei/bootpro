@@ -151,4 +151,17 @@ public class Encodes {
 			throw Exceptions.unchecked(e);
 		}
 	}
+
+
+	/**
+	 * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
+	 */
+	public static String entryptPassword(String plainPassword) {
+		String plain = Encodes.unescapeHtml(plainPassword);
+		int SALT_SIZE = 8;
+		int HASH_INTERATIONS = 1024;
+		byte[] salt = Digests.generateSalt(SALT_SIZE);
+		byte[] hashPassword = Digests.sha1(plain.getBytes(), salt, HASH_INTERATIONS);
+		return Encodes.encodeHex(salt)+Encodes.encodeHex(hashPassword);
+	}
 }

@@ -1,7 +1,9 @@
 package com.cgq.pojo;
 
+import java.util.UUID;
+
 public class SysUser {
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     private String username;
 

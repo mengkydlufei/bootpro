@@ -14,4 +14,5 @@ public interface SysUserService {
     SysUser selectByUsername(String username);
 
     SysUser selectUserByNameAndPwd(ParamDto paramDto);
+    void insertUser(SysUser sysUser);
 }

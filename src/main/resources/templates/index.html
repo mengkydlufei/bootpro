@@ -4,10 +4,61 @@
 <head>
     <meta charset="utf-8">
     <title>Live2D！</title>
+    <link rel="stylesheet" th:href="@{static/websocket/css/main.css}" />
     <link rel="stylesheet" th:href="@{static/live2d/css/live2d.css}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 <body>
+
+<noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+
+<div id="username-page">
+    <div class="username-page-container">
+        <h1 class="title">Type your username</h1>
+        <form id="usernameForm" name="usernameForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="accent username-submit">Start Chatting</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="chat-page" class="hidden">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Spring WebSocket Chat Demo</h2>
+        </div>
+        <div class="connecting">
+            Connecting...
+        </div>
+        <ul id="messageArea">
+
+        </ul>
+        <form id="messageForm" name="messageForm" nameForm="messageForm">
+            <div class="form-group">
+                <div class="input-group clearfix">
+                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                    <button type="submit" class="primary">Send</button>
+                </div>
+            </div>
+            <div class="user-join">
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+
+
 <div id="landlord" style="left:5px;bottom:0px;">
     <div class="message" style="opacity:0"></div>
     <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
@@ -49,5 +100,9 @@
 </script>
 <script type="text/javascript" th:src="@{static/live2d/js/live2d.js}"></script>
 <script type="text/javascript" th:src="@{static/live2d/js/message.js}"></script>
+
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js}"></script>
+<script th:src="@{static/websocket/js/main.js}"></script>
 </body>
 </html>
